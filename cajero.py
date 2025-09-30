@@ -1,4 +1,3 @@
-# Archivo: cajero.py
 import fun
 
 cuentas = {
@@ -10,18 +9,23 @@ cuentas = {
 user = input("Ingresa tu Usuario \n").lower()
 
 if user in cuentas:
+    print("======= BIENVENID@ AL CAJERO M.A.F.I.A SAVINGS =======\n \n")
     datos = cuentas[user]
     
     if datos and datos[0] == "default":
-        print(f"Querido {user}, por favor digite su clave por primera vez")
+        print(f"Querid@ {user}, por favor digite su clave por primera vez")
         
-        # Llama a la función que ahora maneja los reintentos
         nueva_clave = fun.clave_primera_vez(user) 
         
-        # Una vez que la función devuelve la clave (que es válida), la guardamos
-        datos[0] = nueva_clave # Reemplazamos "default" con la nueva clave
+        datos[0] = nueva_clave #Reemplazar Default en Diego
         
         print(f"\n¡Clave actualizada con éxito! Nuevo estado de la cuenta: {datos}")
+    else:
+        print("=== OPCIONES A ELEGIR: === \n 1. Consultar Saldo \n 2. Depositar Dinero \n 3. Retirar Dinero \n ===============")
+        
+        opcion = input(f"Querid@ {user}, Por favor digite el numero de la opcion a realizar: \n")
+        
+        
         
     
 else:
