@@ -1,19 +1,16 @@
 import fun
 
-cuentas = {
-    "diego": ["default", 5000000],
-    "gabriela": ["hola1234", 4000]
-}
 
+
+print("\n \n ======= BIENVENID@ AL CAJERO M.A.F.I.A SAVINGS =======\n \n")
 
 user = input("Ingresa tu Usuario \n").lower()
 
-if user in cuentas:
-    print("======= BIENVENID@ AL CAJERO M.A.F.I.A SAVINGS =======\n \n")
-    datos = cuentas[user]
+if user in fun.cuentas:
+    datos = fun.cuentas[user]   
     
     if datos and datos[0] == "default":
-        print(f"Querid@ {user}, por favor digite su clave por primera vez")
+        print(f"\n \n Querid@ {user}, hemos detectado que no ha registrado su clave!!! \n =!=!=!=!=!=!= =!=!=!=!=!=!=")
         
         nueva_clave = fun.clave_primera_vez(user) 
         
@@ -23,10 +20,19 @@ if user in cuentas:
     else:
         print("=== OPCIONES A ELEGIR: === \n 1. Consultar Saldo \n 2. Depositar Dinero \n 3. Retirar Dinero \n ===============")
         
-        opcion = input(f"Querid@ {user}, Por favor digite el numero de la opcion a realizar: \n")
+        opcion = int(input(f"Querid@ {user}, por favor digite el numero de la opcion a realizar: \n"))
         
+        if opcion == 1:
+            saldo_usuario = fun.consulta_saldo(user)
+            print(f"\n \n Su saldo es {saldo_usuario}")
+            
+        elif opcion == 2:
+            depositado = fun.depositar_dinero(user)
+            print(f"\n \n Su dinero depositado es {depositado}")
         
-        
-    
+        elif opcion == 3:
+            retirado = fun.retirar_dinero(user)
+            print(f"\n \n Su dinero depositado es {retirado}")
+            
 else:
     print("Usuario no registrado")

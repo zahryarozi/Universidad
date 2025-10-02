@@ -1,7 +1,10 @@
 # Archivo: fun.py
 import re;
 
-saldo = 4000
+cuentas = {
+    "diego": ["default", 5000000],
+    "gabriela": ["hola1234", 4000]
+}   
 
 def validar(psswrd):
     
@@ -23,24 +26,17 @@ def validar(psswrd):
 
     valida = len(errores) == 0
 
-    return valida, errores
-
-
-
-def consulta_saldo ():
-    return saldo
-
+    return valida,errores
 
 
 def clave_primera_vez (user):
-    
     # Bucle while para que se pueda reintentar
     while True: 
-        print(f"\nBienvenido {user}. Por favor ingresa tu clave de acuerdo a los siguientes parametros: ")
+        print(f"\n Por favor ingresa tu clave de acuerdo a los siguientes parametros: ")
         print(f"- Minimo 8 caracteres \n - Minimo una mayuscula \n - Minimo un numero \n - Al menos un caracter especial")
         
         psswrd = input("Ingresa la clave: ")
-        valida, mensajes_error = validar(psswrd)
+        valida,mensajes_error = validar(psswrd)
         
         # Resultados
         if valida:
@@ -53,3 +49,28 @@ def clave_primera_vez (user):
             for error in mensajes_error:
                 print(error)
             print("Por favor, inténtalo de nuevo.")
+            
+
+def consulta_saldo (user):
+    saldou = cuentas[user]
+    return saldou[1]
+
+def depositar_dinero (user):
+    dinero = cuentas[user]
+    disponible = dinero[1]
+    print(f"\n \nQuerid@ {user}, tienes actualmente {disponible} disponible. Ingresa el valor a depositar")
+    depositar = int(input())
+    nuevo_dinero = disponible + depositar
+    return nuevo_dinero
+    
+    
+
+def retirar_dinero(user):
+    dinero = cuentas[user]
+    disponible = dinero[1]  
+    
+    print(f"\n \nQuerid@ {user}, tienes actualmente {disponible} disponible. Ingresa el valor a retirar")
+    retirar = int(input())
+    nuevo_dinero = disponible - retirar
+    return nuevo_dinero
+    
